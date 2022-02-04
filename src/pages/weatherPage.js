@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TextInput, Alert} from 'react-native';
 import {SearchableModal, FormInput, TextButton} from '../components';
 import {SIZES, COLORS} from '../constants';
 import axios from 'axios';
 
 export default function WeatherPage() {
   const [weatherModal, setWeatherModal] = useState(false);
+  const [input, setInput] = useState('');
   const fetchWeather = async () => {
     const response = await fetch(
       'https://www.metaweather.com/api/location/search/?query=san',
@@ -17,10 +18,20 @@ export default function WeatherPage() {
   };
 
   return (
-    <View>
-      <Text>weatherPage</Text>
+    <View style={{justifyContent: 'center'}}>
+      <Text testID="title">Hello there</Text>
+
+      <TextInput
+        testID="input"
+        placeholder="name"
+        value={input}
+        onChangeText={setInput}
+        style={{width: 130, height: 40, borderColor: '#000', borderWidth: 2}}
+      />
 
       <TextButton
+        testId={'button'}
+        onPress={() => Alert.alert(input)}
         label="Get Started"
         buttonContainerStyle={{
           backgroundColor: COLORS.textPrimary,
@@ -29,7 +40,7 @@ export default function WeatherPage() {
           marginTop: SIZES.padding,
           borderRadius: SIZES.radius,
         }}
-        onPress={() => setWeatherModal(!weatherModal)}
+        // onPress={() => setWeatherModal(!weatherModal)}
       />
 
       <SearchableModal

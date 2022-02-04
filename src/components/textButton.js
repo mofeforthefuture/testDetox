@@ -5,6 +5,7 @@ import {TouchableOpacity, Text} from 'react-native';
 import {FONTS, COLORS} from '../constants';
 
 const TextButton = ({
+  testId,
   buttonContainerStyle,
   disabled,
   label,
@@ -13,6 +14,7 @@ const TextButton = ({
 }) => {
   return (
     <TouchableOpacity
+      testID={testId}
       style={{
         alignItems: 'center',
         justifyContent: 'center',
